@@ -6,6 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create([
-  { name: 'Test User', email: 'test@example.com', password: 'password123' }
-])
+User.delete_all
+
+# Create Customers
+customers = 1.upto(10).map do |n|
+  {
+    name: "Customer #{n}",
+    email: "cust#{n}@example.com",
+    password: "hunter#{n}",
+  }
+end
+
+Customer.create(customers)
+
+# Create Admin
+admins = 1.upto(2).map do |n|
+  {
+    name: "Admin #{n}",
+    email: "admin#{n}@example.com",
+    password: "admin#{n}",
+  }
+end
+
+Admin.create(admins)

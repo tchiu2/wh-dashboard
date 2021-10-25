@@ -1,0 +1,22 @@
+<h1>Customers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Last Login</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |c| %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.email %></td>
+        <td><%= c.updated_at %></td>
+        <td><%= link_to 'Show', user_path(c) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

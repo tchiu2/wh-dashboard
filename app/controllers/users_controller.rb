@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
+  before_action :check_permissions, only: [:show]
+
   def index
-    if current_user
+    redirect_to login_path and return if !current_user
+
+    if current_user.is_admin?
+      redirect_to admins_path
+    else
       @user = current_user
       render :show
-    else
-      redirect_to login_path
     end
   end
 
@@ -17,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = Customer.new(user_params)
 
     @user.email.downcase!
 
