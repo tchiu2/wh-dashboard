@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = Customer.new(user_params)
+    @user = User.new(user_params)
 
     @user.email.downcase!
 
