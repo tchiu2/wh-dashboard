@@ -2,3 +2,10 @@
 <div>Name: <%= @user.name %></div>
 <div>Email: <%= @user.email %></div>
 <div>Last Login: <%= @user.updated_at %></div>
+
+<% if current_user.is_admin? %>
+  <hr />
+  <h2>Admin Debug Info</h2>
+  <div>ID: <%= @user.id %></div>
+  <div>Created At: <%= @user.created_at %></div>
+<% end %>
