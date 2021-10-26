@@ -12,9 +12,18 @@
 
   <body>
     <% if current_user %>
-      <%= "Logged in as #{current_user.email}" %> | <%= link_to 'Log Out', logout_path, method: :delete %>
+      <% if current_admin_user.present? && current_admin_user != current_user %>
+        <%= "#{current_admin_user.email} is logged in as #{current_user.email}" %>
+      <% else %>
+        <%= "Logged in as #{current_user.email}" %>
+        <% if current_user.is_admin? %>
+          | <%= link_to 'Admin', admins_path %>
+        <% end %>
+      <% end %>
+      | <%= link_to 'Log Out', logout_path, method: :delete %>
     <% else %>
-      <%= link_to 'Log In', login_path %> | <%= link_to 'Sign Up', new_user_path %>
+      <%= link_to 'Log In', login_path %>
+      | <%= link_to 'Sign Up', new_user_path %>
     <% end %>
     <hr />
 

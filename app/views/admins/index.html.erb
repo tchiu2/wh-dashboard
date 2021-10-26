@@ -6,7 +6,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Last Login</th>
-      <th></th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +16,7 @@
         <td><%= c.email %></td>
         <td><%= c.updated_at %></td>
         <td><%= link_to 'Show', user_path(c) %></td>
+        <td><%= link_to 'Login', login_as_user_admin_path(c), method: :post %></td>
       </tr>
     <% end %>
   </tbody>
